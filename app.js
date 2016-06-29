@@ -26,7 +26,7 @@ app.use(express.static('public'));
 app.use(express.static(rootPath + '/src'));
 //set up routes
 var searchRouter = require('./src/webserver/routes/searchRoutes')();
-app.use('/Search', searchRouter);
+app.use('/search', searchRouter);
 
 app.get('*', function (req, res) {
     res.sendFile(rootPath + '/src/index.html');
