@@ -2,7 +2,7 @@
 (function () {
     var bugFarmApp = angular.module('bugFarmApp', ['ngResource', 'ngRoute'])
         .config(function ($routeProvider, $locationProvider) {
-            $routeProvider.when('/search', {
+            $routeProvider.when('/search/', {
                 templateUrl: 'templates/search.html',
                 controller: 'SearchController'
             });
