@@ -1,4 +1,3 @@
-//set up web server
 var express = require('express');
 var path = require('path');
 var app = express();
@@ -22,16 +21,18 @@ sql.connect(config, function (err) {
 });
 
 //serve up static css/js files from public directory
-app.use(express.static('public'));
+app.use(express.static(rootPath + '/public'));
 app.use(express.static(rootPath + '/src'));
 //set up routes
 var searchRouter = require('./src/webserver/routes/searchRoutes')();
-app.use('/search', searchRouter);
+app.use('/api/search', searchRouter);
+
+var issueRouter = require('./src/webserver/routes/issueRoutes')();
+app.use('/api/issue', issueRouter);
 
 app.get('*', function (req, res) {
-    res.sendFile(rootPath + '/src/index.html');
+    res.sendFile('c:/BugFarm-Angular/src/index.html');
 });
-
 //start server
 app.listen(port, function (err) {
     console.log('running server on port ' + port);

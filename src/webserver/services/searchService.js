@@ -20,15 +20,16 @@ var searchService = function () {
                         if (recordset.length === 0) {
                             res.status(404).send('Not Found');
                         } else {
+                            var results = recordset;
                             res.setHeader('Content-Type', 'application/json');
-                            res.send(recordset);
+                            res.send(results);
                             res.end();
-                            console.log(recordset);
                         }
                     });
             });
     }
     
+
     return {
         searchIssues: searchIssues
     };

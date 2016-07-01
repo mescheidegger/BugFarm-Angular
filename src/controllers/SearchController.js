@@ -1,6 +1,6 @@
 'use strict';
 (function () {
-    function SearchController($scope, $routeParams, search) {
+    function SearchController($scope, $routeParams, search, $location) {
 
         if ($routeParams.searchval == undefined) {
             $scope.searchval = '';
@@ -27,7 +27,13 @@
                     function (response) {
                         console.log(response);
                     });;
-        }
+        };
+        
+                
+        $scope.browseToIssue = function(issueKey) {
+            if (issueKey !== 'undefined')
+                $location.url('/issue/' + issueKey);     
+        };
 
 
     };

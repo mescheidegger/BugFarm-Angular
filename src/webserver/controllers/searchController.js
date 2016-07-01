@@ -5,8 +5,7 @@ var searchController = function () {
     var getAllIssues = function (req, res) {
         searchService.searchIssues(req, res, '');
     };
-
-    
+  
     var getIssuesByValue = function (req, res) {
         if (req.params.searchval == undefined) {
             var searchterm = '';   
