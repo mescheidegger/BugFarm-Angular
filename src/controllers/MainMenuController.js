@@ -6,11 +6,11 @@
         };
         $scope.searchIssues = function(searchval) {
             var temp;
-            searchval == undefined ? temp = '' : temp = searchval;
+            searchval === undefined ? temp = '' : temp = searchval;
             $location.url('/search/' + temp);
             $scope.searchval = '';
         };
-    };
+    }
 
     angular
         .module('bugFarmApp')

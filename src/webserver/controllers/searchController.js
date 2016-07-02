@@ -7,11 +7,10 @@ var searchController = function () {
     };
   
     var getIssuesByValue = function (req, res) {
-        if (req.params.searchval == undefined) {
-            var searchterm = '';   
-        } else {
-            var searchterm = req.params.searchval;    
-        };
+        var searchterm = '';
+        if (req.params.searchval !== undefined) {
+            searchterm = req.params.searchval;    
+        }
         searchService.searchIssues(req, res, searchterm);
     };
 

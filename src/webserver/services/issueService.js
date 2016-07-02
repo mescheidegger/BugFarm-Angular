@@ -23,12 +23,12 @@ var issueService = function () {
                     });
             });
         
-    };
+    }
     
 
     return {
         getIssueByKey: getIssueByKey
     };
-}
+};
 
 module.exports = issueService;

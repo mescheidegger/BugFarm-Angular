@@ -33,6 +33,6 @@ var searchService = function () {
     return {
         searchIssues: searchIssues
     };
-}
+};
 
 module.exports = searchService;

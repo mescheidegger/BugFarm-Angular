@@ -12,7 +12,7 @@
                 return resource.query({searchval:searchval});//get({searchval:searchval});
             }
         };
-    };
+    }
 
     angular
         .module('bugFarmApp')

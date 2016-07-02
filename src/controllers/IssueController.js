@@ -11,7 +11,7 @@
             function(response){
                 console.log(response);
             });
-    };
+    }
 
     angular
         .module('bugFarmApp')
