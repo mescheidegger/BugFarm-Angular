@@ -6,9 +6,8 @@
         }, {});
         
         return {
-            getIssueDetails: function () {
-                //return resource.query();
-                console.log('getIssueDetails');
+            getIssueDetails: function (issueKey) {
+                return resource.get({issueKey:issueKey});
             }
         };
     };

@@ -1,7 +1,16 @@
 'use strict';
 (function () {
-    function IssueController($scope, $location, issue) {       
-        issue.getIssueDetails();    
+    function IssueController($scope, $routeParams, issue) {       
+        issue.getIssueDetails($routeParams.issueKey)
+        .$promise
+        .then(
+            function(issueDetails){
+                $scope.issueDetails = issueDetails;
+            })
+        .catch(
+            function(response){
+                console.log(response);
+            });
     };
 
     angular
