@@ -1,6 +1,6 @@
 'use strict';
 (function () {
-    var bugFarmApp = angular.module('bugFarmApp', ['ngResource', 'ngRoute'])
+    var bugFarmApp = angular.module('bugFarmApp', ['ngResource', 'ngRoute', 'ui.bootstrap'])
         .config(function ($routeProvider, $locationProvider) {
             $routeProvider.when('/issue/:issueKey', {
                templateUrl: 'templates/issue.html',
