@@ -3,6 +3,8 @@ var path = require('path');
 var app = express();
 var port = process.env.port || 5000;
 var rootPath = path.normalize(__dirname);
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
 
 //init body parser
 var bodyParser = require('body-parser');
@@ -23,7 +25,18 @@ sql.connect(config, function (err) {
 //serve up static css/js files from public directory
 app.use(express.static(rootPath + '/public'));
 app.use(express.static(rootPath + '/src'));
+
+//initalize passport/session manager
+app.use(cookieParser());
+app.use(session({secret : 'bugFarm',
+                 resave : true,
+                 saveUninitialized : true}));
+require('./src/config/passport')(app);
+
 //set up routes
+var authRouter = require('./src/webserver/routes/authRoutes')();
+app.use('api/auth', authRouter);
+
 var searchRouter = require('./src/webserver/routes/searchRoutes')();
 app.use('/api/search', searchRouter);
 
