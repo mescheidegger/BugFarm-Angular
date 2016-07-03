@@ -1,6 +1,6 @@
 'use strict';
 (function () {
-    function ModalLoginController($scope, $uibModalInstance) {
+    function ModalLoginController($scope, $uibModalInstance, authorization) {
         $scope.showLogin = true;
         $scope.showRegister = false;
         $scope.showLost = false;
