@@ -9,16 +9,22 @@
             $uibModalInstance.dismiss('cancel');
         };
 
-        $scope.login = function () {
-
+        $scope.login = function (user, loginForm) {
+            if (loginForm.$valid){
+                $uibModalInstance.close(user);  
+            };
         };
         
-        $scope.lostPassword = function() {
-            
+        $scope.lostPassword = function(user, lostPasswordForm) {
+            if (lostPasswordForm.$valid){
+                $uibModalInstance.close(user);
+            };
         };
         
-        $scope.register = function(){
-            
+        $scope.register = function(user, registerForm){
+            if (registerForm.$valid){
+                $uibModalInstance.close(user);
+            };
         };
 
         $scope.toggleForms = function (showForm) {
