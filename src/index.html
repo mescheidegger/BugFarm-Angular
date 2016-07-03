@@ -67,8 +67,9 @@
                             </form>
                         </li>
                         <li><a href="../navbar/">Help</a></li>
+                        <!-- begin login -->
                         <!--<li class="active"><a href="./">Admin<span class="sr-only">(current)</span></a></li> -->
-                        <li><a href="#" id="loginform">Login</a>
+                        <li><a href="#" id="loginform" ng-click="signIn()">Login</a>
                             <!-- <li><a href="#" id="logoutform" data-toggle="modal" data-target="#logout-modal">Logout</a>  -->
 
                         </li>
@@ -100,6 +101,7 @@
     <script src="/controllers/MainMenuController.js"></script>
     <script src="/controllers/SearchController.js"></script>
     <script src="/controllers/IssueController.js"></script>
+    <script src="/controllers/ModalLoginController.js"></script>
     <script src="/services/search.js"></script>
     <script src="/services/issue.js"></script>
 </body>
