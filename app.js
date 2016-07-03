@@ -35,7 +35,7 @@ require('./src/config/passport')(app);
 
 //set up routes
 var authRouter = require('./src/webserver/routes/authRoutes')();
-app.use('api/auth', authRouter);
+app.use('/api/auth', authRouter);
 
 var searchRouter = require('./src/webserver/routes/searchRoutes')();
 app.use('/api/search', searchRouter);

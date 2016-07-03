@@ -5,7 +5,15 @@ var router = function(){
     
     var authController = require('../controllers/authController')();
     
-   // authRouter.route
+    authRouter.route('/register/:fname/:lname/:userName/:password/:email')
+    .all(authController.checkIfUserExists)
+    .post(authController.addUser);
+    
+    authRouter.route('/login/:userName/:password')
+    .post(authController.loginUser);
+    
+    authRouter.route('/lostPassword/:email')
+    .post(authController.resendEmail);
     
     return authRouter;
 };

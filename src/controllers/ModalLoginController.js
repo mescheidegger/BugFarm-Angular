@@ -10,19 +10,32 @@
         };
 
         $scope.login = function (user, loginForm) {
-            if (loginForm.$valid){
-                $uibModalInstance.close(user);  
-            };
-        };
-        
-        $scope.lostPassword = function(user, lostPasswordForm) {
-            if (lostPasswordForm.$valid){
+            if (loginForm.$valid) {
                 $uibModalInstance.close(user);
             };
         };
-        
-        $scope.register = function(user, registerForm){
-            if (registerForm.$valid){
+
+        $scope.lostPassword = function (user, lostPasswordForm) {
+            if (lostPasswordForm.$valid) {
+                $uibModalInstance.close(user);
+            };
+        };
+
+        $scope.register = function (user, registerForm) {
+            if (registerForm.$valid) {
+
+                authorization.registerUser(user.fname, user.lname, user.userName, user.password, user.email)
+                    .$promise
+                    .then(
+                        function (response) {
+                            console.log('Successful Register');
+
+                        })
+                    .catch(
+                        function (response) {
+                            console.log(response);
+                        });
+
                 $uibModalInstance.close(user);
             };
         };
