@@ -11,19 +11,38 @@
 
         $scope.login = function (user, loginForm) {
             if (loginForm.$valid) {
+                authorization.loginUser(user)
+                    .$promise
+                    .then(
+                        function (response) {
+                            console.log(response);
+                        })
+                    .catch(function (response) {
+                        console.log(response);
+                    });
+
                 $uibModalInstance.close(user);
             };
         };
 
         $scope.lostPassword = function (user, lostPasswordForm) {
             if (lostPasswordForm.$valid) {
+                authorization.sendNewPassword(user)
+                    .$promise
+                    .then(
+                        function (response) {
+                            console.log(response);
+                        })
+                    .catch(function (response) {
+                        console.log(response);
+                    });
+
                 $uibModalInstance.close(user);
             };
         };
 
         $scope.register = function (user, registerForm) {
             if (registerForm.$valid) {
-
                 authorization.registerUser(user)
                     .$promise
                     .then(

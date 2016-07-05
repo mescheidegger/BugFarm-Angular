@@ -10,17 +10,16 @@
             }
         });
 
-        var login = $resource('/api/auth/login/:userName/:password', {
-            userName: '@userName',
-            password: '@password'
+        var login = $resource('/api/auth/login', {
+      
         }, {
             validateLogin: {
                 method: 'POST'
             }
         });
 
-        var lostPassword = $resource('/api/auth/lostPassword/:email', {
-            email: '@email'
+        var lostPassword = $resource('/api/auth/lostPassword', {
+            
         }, {
             resendPassword: {
                 method: 'POST'
@@ -31,16 +30,11 @@
             registerUser: function (userData) {
                 return register.addUser(userData);
             },
-            loginUser: function (username, password) {
-                return login.validateLogin({
-                    username: username,
-                    password: password
-                })
+            loginUser: function (userData) {
+                return login.validateLogin(userData)
             },
-            sendNewPassword: function (email) {
-                return lostPassword.resendPassword({
-                    email: email
-                })
+            sendNewPassword: function (userData) {
+                return lostPassword.resendPassword(userData)
             }
         };
     }

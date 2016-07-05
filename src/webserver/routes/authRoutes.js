@@ -9,10 +9,10 @@ var router = function(){
     .all(authController.checkIfUserExists)
     .post(authController.addUser);
     
-    authRouter.route('/login/:userName/:password')
+    authRouter.route('/login')
     .post(authController.loginUser);
     
-    authRouter.route('/lostPassword/:email')
+    authRouter.route('/lostPassword')
     .post(authController.resendEmail);
     
     return authRouter;
