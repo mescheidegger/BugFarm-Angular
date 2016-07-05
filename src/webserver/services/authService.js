@@ -2,7 +2,7 @@ var sql = require('mssql');
 
 var authService = function () {
 
-    var checkUser = function (userName, email, res, next) {
+    var checkUser = function (userName, email, success, error) {
         var ps = new sql.PreparedStatement();
         ps.input('userName', sql.NVarChar);
         ps.input('email', sql.NVarChar);
@@ -14,9 +14,9 @@ var authService = function () {
                     },
                     function (err, recordset) {
                         if (recordset.length === 0) {
-                            next();
+                            success();
                         } else {
-                            res.send('Duplicate User or Email');
+                            error();
                         }
                     });
             });

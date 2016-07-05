@@ -3,7 +3,9 @@ var authController = function () {
     var authService = require('../services/authService')();
 
     var checkIfUserExists = function (req, res, next) {
-        authService.checkUser(req.body.userName, req.body.email, res, next);
+        authService.checkUser(req.body.userName, req.body.email, next(), function () {
+            res.send('duplicate user or email found');
+        });
     };
 
     var addUser = function (req, res, next) {

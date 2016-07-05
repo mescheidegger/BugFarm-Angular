@@ -2,7 +2,7 @@ var sql = require('mssql');
 
 var searchService = function () {
 
-    function searchIssues(req, res, searchterm) {
+    function searchIssues(searchterm, success, error) {
         var fetch = 50; //show 50 results at a time
         var offset = 0; //will extract out of request eventually
         var ps = new sql.PreparedStatement();
@@ -18,12 +18,10 @@ var searchService = function () {
                     },
                     function (err, recordset) {
                         if (recordset.length === 0) {
-                            res.status(404).send('Not Found');
+                            error();
                         } else {
                             var results = recordset;
-                            res.setHeader('Content-Type', 'application/json');
-                            res.send(results);
-                            res.end();
+                            success(results);
                         }
                     });
             });

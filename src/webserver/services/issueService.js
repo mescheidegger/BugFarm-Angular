@@ -2,7 +2,7 @@ var sql = require('mssql');
 
 var issueService = function () {
 
-    function getIssueByKey(req, res) {
+    function getIssueByKey(req, res, success, error) {
         var issueKey = req.params.issueKey;
         var ps = new sql.PreparedStatement();
         ps.input('issueKey', sql.NVarChar);
@@ -13,12 +13,10 @@ var issueService = function () {
                     },
                     function (err, recordset) {
                         if (recordset.length === 0) {
-                            res.status(404).send('Not Found');
+                            error();
                         } else {
                             var results = recordset[0];
-                            res.setHeader('Content-Type', 'application/json');
-                            res.send(results);
-                            res.end();
+                            success(results);
                         }
                     });
             });
