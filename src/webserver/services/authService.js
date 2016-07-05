@@ -2,7 +2,7 @@ var sql = require('mssql');
 
 var authService = function () {
 
-    var checkUser = function (userName, email) {
+    var checkUser = function (userName, email, res, next) {
         var ps = new sql.PreparedStatement();
         ps.input('userName', sql.NVarChar);
         ps.input('email', sql.NVarChar);
@@ -14,16 +14,46 @@ var authService = function () {
                     },
                     function (err, recordset) {
                         if (recordset.length === 0) {
-                            return false;
+                            next();
                         } else {
-                            return true;
+                            res.send('Duplicate User or Email');
                         }
                     });
             });
     };
-    
+
+    var addUser = function (fname, lname, userName, email, password) {
+        var ps = new sql.PreparedStatement();
+        ps.input('fname', sql.NVarChar);
+        ps.input('lname', sql.NVarChar);
+        ps.input('userName', sql.NVarChar);
+        ps.input('email', sql.NVarChar);
+        ps.input('password', sql.NVarChar);
+
+        ps.prepare('EXEC dbo.spAddUser @userName, @fname, @lname, @password, @email',
+            function (err) {
+                ps.execute({
+                        fname: fname,
+                        lname: lname,
+                        userName: userName,
+                        email: email,
+                        password: password
+                    },
+                    function (err, recordset) {
+
+                        if (err === null) {
+                            console.log('Successfully added user');
+                        } else {
+                            console.log('Was unable to add user');
+                        };
+
+                    });
+            });
+    }
+
     return {
-        checkUser: checkUser
+        checkUser: checkUser,
+        addUser: addUser
     }
 
 };
