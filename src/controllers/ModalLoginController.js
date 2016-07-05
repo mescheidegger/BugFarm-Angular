@@ -24,7 +24,7 @@
         $scope.register = function (user, registerForm) {
             if (registerForm.$valid) {
 
-                authorization.registerUser(user.fname, user.lname, user.userName, user.password, user.email)
+                authorization.registerUser(user)
                     .$promise
                     .then(
                         function (response) {

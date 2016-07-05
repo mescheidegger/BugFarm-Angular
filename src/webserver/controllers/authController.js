@@ -3,7 +3,7 @@ var authController = function () {
     var authService = require('../services/authService')();
 
     var checkIfUserExists = function (req, res, next) {
-        if (authService.checkUser(req.params.userName, req.params.email)){
+        if (authService.checkUser(req.body.userName, req.body.email)){
             res.send('Duplicate User or Email')
         } else{
             next();
@@ -11,7 +11,7 @@ var authController = function () {
     };
     
     var addUser = function (req, res, next) {
-        console.log(req.params.userName);
+        console.log(req.body.userName);
     };
 
     var userValidate = function (req, res, next) {

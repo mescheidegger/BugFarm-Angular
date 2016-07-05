@@ -1,19 +1,12 @@
 'use strict';
 (function () {
     function authorization($resource) {
-        var register = $resource('/api/auth/register/:fname/:lname/:userName/:password/:email', {
-            fname: '@fname',
-            lname: '@lname',
-            userName: '@userName',
-            password: '@password',
-            email: '@email'
+        var register = $resource('/api/auth/register', {
+
         }, {
 
             addUser: {
-                method: 'POST',
-                params: {
-                    create: true
-                }
+                method: 'POST'
             }
         });
 
@@ -25,29 +18,34 @@
                 method: 'POST'
             }
         });
-        
-        var lostPassword = $resource('/api/auth/lostPassword/:email',{
+
+        var lostPassword = $resource('/api/auth/lostPassword/:email', {
             email: '@email'
-        },{
+        }, {
             resendPassword: {
                 method: 'POST'
             }
         });
-        
+
         return {
-            registerUser: function(fname, lname, userName, password, email){
-                return register.addUser({fname:fname, lname:lname, username:userName, password:password, email:email});
+            registerUser: function (userData) {
+                return register.addUser(userData);
             },
-            loginUser: function(username, password){
-                return login.validateLogin({username:username, password:password})
+            loginUser: function (username, password) {
+                return login.validateLogin({
+                    username: username,
+                    password: password
+                })
             },
-            sendNewPassword: function(email){
-                return lostPassword.resendPassword({email:email})
+            sendNewPassword: function (email) {
+                return lostPassword.resendPassword({
+                    email: email
+                })
             }
         };
     }
 
-    angular 
+    angular
         .module('bugFarmApp')
         .factory('authorization', authorization);
 })();

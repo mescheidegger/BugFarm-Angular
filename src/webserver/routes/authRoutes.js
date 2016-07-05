@@ -5,7 +5,7 @@ var router = function(){
     
     var authController = require('../controllers/authController')();
     
-    authRouter.route('/register/:fname/:lname/:userName/:password/:email')
+    authRouter.route('/register')
     .all(authController.checkIfUserExists)
     .post(authController.addUser);
     
