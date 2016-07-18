@@ -1,5 +1,6 @@
 var express = require('express');
 var authRouter = express.Router();
+var passport = require('passport');
 
 var router = function(){
     
@@ -10,7 +11,11 @@ var router = function(){
     .post(authController.addUser);
     
     authRouter.route('/login')
-    .post(authController.loginUser);
+    .post(passport.authenticate('local',{
+        failureRedirect: '/'
+    }),
+         authController.session);
+   // .post(authController.loginUser);
     
     authRouter.route('/lostPassword')
     .post(authController.resendEmail);

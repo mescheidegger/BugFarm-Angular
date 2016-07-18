@@ -20,8 +20,6 @@ function ValidateUser(username, password, done) {
                         user = recordset;
                         console.log('Successful login from ' + username);
                         done(null, user); //They successfully logged in
-
-
                     } else {
                         console.log('Warn user either incorrect username or password');
                         //Send response back to the client here
@@ -37,7 +35,7 @@ function ValidateUser(username, password, done) {
 
 module.exports = function () {
     passport.use(new LocalStrategy({
-            usernameField: 'userName',
+            usernameField: 'username',
             passwordField: 'password'
         },
         ValidateUser));
